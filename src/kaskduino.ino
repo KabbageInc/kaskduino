@@ -56,7 +56,7 @@ void sendHeartbeat()
 {
   unsigned long now = millis();
 
-  if ((now - g_lastHeartbeat) > HEARTBEAT_INTERVAL)
+  if (now < g_lastHeartbeat || (now - g_lastHeartbeat) > HEARTBEAT_INTERVAL)
   {
     g_lastHeartbeat = now;
     g_ledStatus = !g_ledStatus;
