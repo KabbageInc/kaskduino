@@ -4,7 +4,7 @@
 #define VERSION "0.0.3"
 #define HEARTBEAT_INTERVAL 5000
 
-long g_lastHeartbeat = 0;
+unsigned long g_lastHeartbeat = 0;
 int g_ledStatus = 0;
 
 Wiegand g_wiegand;
@@ -54,7 +54,7 @@ void resetHeartbeat()
 
 void sendHeartbeat()
 {
-  long now = millis();
+  unsigned long now = millis();
 
   if ((now - g_lastHeartbeat) > HEARTBEAT_INTERVAL)
   {
