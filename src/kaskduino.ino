@@ -70,7 +70,6 @@ void sendHeartbeat()
 void sendStartupEvent()
 {
   Serial.print("startup:");
-  Serial.print(millis());
   Serial.println(VERSION);
 }
 
@@ -110,8 +109,6 @@ void checkCommand()
 void commandVersion()
 {
   Serial.print("v:");
-  Serial.print(millis());
-  Serial.print(":");
   Serial.println(VERSION);
 }
 
@@ -132,8 +129,7 @@ void commandWiegand(String entireCommand)
   attachInterrupt(digitalPinToInterrupt(g_wiegand_pin0), wiegandOnPinStateChange, CHANGE);
   attachInterrupt(digitalPinToInterrupt(g_wiegand_pin1), wiegandOnPinStateChange, CHANGE);
 
-  Serial.print("wiegand_ack:");
-  Serial.println(millis());
+  Serial.print("wiegand_ack");
 
   wiegandOnPinStateChange();
 }
@@ -156,8 +152,7 @@ void commandFt330Init(String entireCommand)
   g_ft330.end();
   g_ft330.begin(pinCount, pinArray, delay, threshold);
 
-  Serial.print("ft330_ack:");
-  Serial.println(millis());
+  Serial.print("ft330_ack");
 }
 
 String getSplitStringValue(String data, char separator, int index)
@@ -205,8 +200,6 @@ void wiegandOnStateChange(bool connected, const char *message)
   resetHeartbeat();
 
   Serial.print("wiegand_state:");
-  Serial.print(millis());
-  Serial.print(":");
   Serial.println(connected ? "1" : "0");
 }
 
@@ -215,8 +208,6 @@ void wiegandOnReceive(uint8_t *data, uint8_t bits, const char *message)
   resetHeartbeat();
 
   Serial.print("wiegand_receive:");
-  Serial.print(millis());
-  Serial.print(":");
   Serial.print(bits);
   Serial.print(":");
 
@@ -233,16 +224,12 @@ void wiegandOnReceive(uint8_t *data, uint8_t bits, const char *message)
 void ft330OnPourStart(int pinNum)
 {
   Serial.print("ft330_start:");
-  Serial.print(millis());
-  Serial.print(":");
   Serial.println(pinNum);
 }
 
 void ft330OnPourEnd(int pinNum, int pulseCount, long duration)
 {
   Serial.print("ft330_end:");
-  Serial.print(millis());
-  Serial.print(":");
   Serial.print(pinNum);
   Serial.print(":");
   Serial.print(pulseCount);
