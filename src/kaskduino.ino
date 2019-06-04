@@ -63,8 +63,7 @@ void sendHeartbeat()
 
     digitalWrite(LED_BUILTIN, g_ledStatus ? HIGH : LOW);
 
-    Serial.print("heartbeat:");
-    Serial.println(now);
+    Serial.print("heartbeat");
   }
 }
 
